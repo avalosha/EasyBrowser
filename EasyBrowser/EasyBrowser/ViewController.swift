@@ -12,7 +12,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
 
     var webView: WKWebView!
     var progressView: UIProgressView!
-    var websites = ["apple.com", "hackingwithswift.com"]
+    var websites = ["google.com", "apple.com", "hackingwithswift.com"]
     
     override func loadView(){
         webView = WKWebView()
@@ -79,12 +79,22 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 if host.contains(website) {
                     //Se permite la carga
                     decisionHandler(.allow)
+                    print("entro")
                     return
                 }
             }
         }
         //Cancela la carga
         decisionHandler(.cancel)
+        print("no entro")
+        showAlert()
+    }
+    
+    //Muestra alerta por no ser una URL reconocida
+    func showAlert() {
+        let ac = UIAlertController(title: "Wrong! That URL isn't valid.", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(ac, animated: true)
     }
 }
 
