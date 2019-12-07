@@ -34,10 +34,12 @@ class ViewController: UIViewController, WKNavigationDelegate {
         //Añadir UIBarButtonItems con UIToolbar
         let progressButton = UIBarButtonItem(customView: progressView)
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let back = UIBarButtonItem(title: "Back", style: .plain, target: webView, action: #selector(webView.goBack))
+        let forward = UIBarButtonItem(title: "Forward", style: .plain, target: webView, action: #selector(webView.goForward))
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
 
         //Configura la matriz de toolbaritems
-        toolbarItems = [progressButton, spacer, refresh]
+        toolbarItems = [progressButton, spacer, back, forward, refresh]
         navigationController?.isToolbarHidden = false
         
         let url = URL(string: "https://" + websites[0])!
